@@ -76,9 +76,9 @@ serenity_lib(LibGfx gfx)
 target_link_libraries(LibGfx PRIVATE LibCompress LibCore LibCrypto LibFileSystem LibRIFF LibTextCodec LibIPC LibUnicode LibURL)
 
 # Third-party
-target_include_directories(LibGfx PRIVATE ${WOFF2_INCLUDE_DIRS})
+target_include_directories(LibGfx PRIVATE $<BUILD_INTERFACE:${WOFF2_INCLUDE_DIRS}>)
 target_link_libraries(LibGfx PRIVATE ${WOFF2_LIBRARIES})
-target_link_directories(LibGfx PRIVATE ${WOFF2_LIBRARY_DIRS})
+target_link_directories(LibGfx PUBLIC $<BUILD_INTERFACE:${WOFF2_LIBRARY_DIRS}>)
 
 set(generated_sources TIFFMetadata.h TIFFTagHandler.cpp)
 list(TRANSFORM generated_sources PREPEND "ImageFormats/")
